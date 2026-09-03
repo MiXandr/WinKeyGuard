@@ -1,0 +1,24 @@
+# Build output
+build/
+build2/
+build3/
+dist/
+out/
+*.user
+*.zip
+
+# Qt / IDE
+.vs/
+.vscode/
+CMakeCache.txt
+CMakeFiles/
+*.cmake.user
+compile_commands.json
+
+# Generated at runtime
+config.json
+config.json.corrupt
+
+# OS
+Thumbs.db
+Desktop.ini
