@@ -3,99 +3,121 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 > **本软件由 AI 制作。**
-> **This software is made by AI.**
 
 本工具由 AI 生成，主要为个人自用场景设计。因开发方式特殊，可能存在未知问题。
 欢迎提交 Bug，我会在能力范围内尽力修复，但无法承诺即时处理。感谢你的理解与支持。
 
-> This tool is AI-generated and designed primarily for personal use. Due to the
-> nature of its development, it may contain unknown issues. Bug reports are
-> welcome; I will fix them as best I can, but cannot promise immediate handling.
-> Thank you for your understanding and support.
-
 ---
 
-轻量、绿色、无需安装的 Windows 游戏快捷键防误触工具。
+## 这是什么
 
-> Lightweight, portable, no-install Windows hotkey guard for games.
+WinKeyGuard 是一款轻量、绿色、无需安装的 Windows 游戏快捷键防误触工具。
 
-当目标游戏处于前台并进入全屏 / 无边框全屏时，自动拦截左手区域容易误触的
-Windows 系统快捷键组合；同时提供 Caps Lock 与输入法联动管理。
+它的核心作用：**当你的游戏处于前台并进入全屏 / 无边框全屏时，自动拦截左手区域容易误触的 Windows 系统快捷键组合**，避免游戏被切出、弹出开始菜单、切到桌面或打开任务视图；同时提供 **Caps Lock 与输入法联动**，防止中文输入法在游戏中乱跳。
 
-> Blocks Windows shortcuts (Win+D, Alt+Tab, ...) while a target game is in
-> foreground fullscreen, and offers a Caps Lock ↔ IME linkage.
+它只拦截「修饰键 + 具体按键」这样的组合，**不会禁用 Win / Ctrl / Alt / Shift 键本身**，因此 WASD、数字键、Ctrl+C/V、Alt+W 等游戏操作完全不受影响。
 
-只拦截「修饰键 + 具体按键」，不简单禁用 Win / Ctrl / Alt / Shift 本身，
-尽量不影响游戏自身的键盘操作。
+## 它解决什么问题
 
-> Only "modifier + specific key" combinations are blocked; Win / Ctrl / Alt /
-> Shift themselves are never disabled, so in-game input stays intact.
+玩全屏游戏时，左手区域经常会误触以下组合，导致游戏被打断：
 
-界面语言跟随系统（简体中文 / English），也可在设置中手动选择。
+- `Win` —— 弹出开始菜单
+- `Win + D` —— 切到桌面
+- `Win + Tab` —— 打开任务视图
+- `Win + 1 ~ 5` —— 启动 / 切换到任务栏程序（游戏里 1~5 常是技能、武器、物品键）
+- `Alt + Tab`、`Alt + Esc` —— 切换窗口 / 最小化
+- `Alt + F4` —— 关闭游戏
+- `Ctrl + Esc` —— 打开开始菜单
+- `Win + Space` —— 切换输入法
 
-> The UI follows the system language (Simplified Chinese / English), and can be
-> switched manually in Settings.
+WinKeyGuard 会在目标游戏「前台 + 全屏」时自动拦截这些组合；一旦你切出游戏、回到桌面或游戏退到后台，保护自动关闭，不会影响你正常使用电脑。重新回到游戏全屏后，保护自动恢复，全程无需手动开关。
 
-## 它解决什么问题 / What problem it solves
+## 主要功能
 
-玩全屏游戏时，左手区域（`Win`、`Alt+Tab`、`Win+D`、`Win+1~5`、`Ctrl+Esc`
-等）很容易误触 Windows 系统快捷键，导致游戏被切出、打开开始菜单、切到桌面，
-甚至弹出任务视图。WinKeyGuard 在游戏处于前台全屏时拦截这些组合，退出游戏
-后自动恢复，无需手动开关。
+### 组合级拦截
 
-> While gaming fullscreen, left-hand keys (Win, Alt+Tab, Win+D, Win+1~5,
-> Ctrl+Esc, ...) can accidentally trigger Windows shortcuts that kick you out of
-> the game, open the Start menu or Task View. WinKeyGuard blocks those combos
-> only while the target game is foreground fullscreen, and auto-releases when you
-> leave the game.
+- 以「修饰键 + 具体按键」为最小拦截单位，精确匹配，不做粗暴的全键盘屏蔽。
+- 只拦截配置里明确指定的 Windows 系统快捷键。
+- 游戏自身的 WASD、数字键、Ctrl / Alt / Shift / Space / Esc / Tab、F1~F12 以及各种自定义组合均正常透传。
 
-## 主要功能 / Features
+### 动态保护
 
-- **组合级拦截 / Combo-level interception**：按「Modifier + Specific Key」精确匹配，
-  不禁用修饰键本身。WASD、数字键、Ctrl+C/V、Alt+W 等游戏输入完全不受影响。
-- **动态保护 / Dynamic protection**：目标进程运行 + 前台 + 全屏 → 自动进入保护；
-  切出 / 回桌面 / 后台自动关闭，重新回到游戏全屏自动恢复。
-- **全屏检测 / Fullscreen detection**：结合前台窗口、窗口矩形、显示器矩形、窗口样式、
-  DWM 信息与 Per-Monitor V2 DPI 感知，支持独占全屏、无边框全屏、多显示器；
-  另有「前台窗口模式」兼容特殊游戏。
-- **Win + \` 特殊入口 / Win + \` escape hatch**：保护状态下按 `Win` + \` 打开
-  **Windows 原生开始菜单**（按物理扫描码识别，不依赖键盘布局字符），返回游戏自动重新保护。
-- **Caps Lock / 输入法联动 / Caps Lock ↔ IME linkage**：Caps ON → 自动切换到英文输入法
-  并禁止输入法切换快捷键；Caps OFF → 按用户选择处理并恢复正常切换。
-- **紧急解除 / Emergency toggle**：`Ctrl+Alt+F12` 一键暂停 / 恢复保护，最高优先级。
-- **托盘常驻 / System tray**：`config.json` 便携配置、用户级开机启动、可选以管理员身份运行。
+保护状态实时跟随前台窗口：
 
-## 系统要求 / System requirements
+| 情况 | 状态 |
+| --- | --- |
+| 目标游戏在后台 | 保护关闭 |
+| 切换到 Chrome / 桌面 | 保护关闭 |
+| 游戏成为前台普通窗口 | 保护关闭 |
+| 游戏成为前台全屏窗口 | 保护开启 |
+| 切出游戏 | 保护关闭 |
+| 重新回到游戏全屏 | 保护重新开启 |
+
+### 全屏检测
+
+结合前台窗口、窗口矩形、显示器矩形、窗口样式、DWM 信息与 Per-Monitor V2 DPI 感知进行判断，支持：
+
+- 独占全屏
+- 无边框全屏（Borderless Fullscreen）
+- 多显示器
+- Windows 10 / Windows 11
+- DPI 缩放
+
+不依赖「窗口最大化」这类不可靠信号。对于无法准确识别的特殊游戏，还提供「前台窗口模式」作为兼容选项：只要目标进程处于前台就进入保护，跳过全屏检测。
+
+### Win + ` 特殊入口
+
+这是本软件最重要的特殊功能。这里的 `` ` `` 指的是 **ESC 下方、数字 1 左侧的物理按键**（不是设置菜单快捷键）。
+
+保护状态下普通按 `Win` 会被拦截；但当你在保护状态下按 **Win + `** 时：
+
+1. 暂时解除当前的 Windows 快捷键拦截；
+2. 让 Windows 收到正常的 Win 行为；
+3. 弹出 **Windows 原生的开始菜单**（不画假菜单、不创建替代 UI）；
+4. 你可以正常使用 Windows。
+
+之后只要你点击游戏、Alt+Tab 回游戏、或游戏重新成为前台全屏窗口，保护立即自动恢复，不需要手动重新开启。
+
+该按键按**物理扫描码**识别，不依赖键盘布局中的字符，因此在不同键盘布局下都能稳定工作。
+
+### Caps Lock / 输入法联动
+
+实时监听 Caps Lock 状态，实现输入法与大小写锁定联动：
+
+- **Caps Lock = ON**：自动切换到英文输入法，并禁止通过系统快捷键（Win+Space、Alt+Shift、Ctrl+Shift 等）切换输入法；在 Caps Lock 保持开启期间，按这些快捷键也不会切换。
+- **Caps Lock = OFF**：解除切换限制，并按你在设置中选择的行为处理（「什么都不做」或「切换到指定输入法」）。
+
+输入法列表来自系统**实际安装**的输入法（TSF 文本服务 + 键盘布局），没有硬编码任何输入法名称；没安装的不会出现，卸载后会标记为无效。
+
+### 紧急解除
+
+默认快捷键 `Ctrl+Alt+F12`：一键立即关闭当前保护，再次按下恢复保护。该快捷键拥有最高优先级，即使配置出错也能使用。
+
+### 托盘常驻
+
+程序启动后常驻系统托盘，配置保存在程序目录的 `config.json` 中。支持用户级开机启动、可选的「以管理员身份运行」。
+
+## 系统要求
 
 - Windows 10 / Windows 11（x64）
-- 无需安装、无需管理员权限（拦截管理员权限运行的游戏时才建议以管理员运行）
-- 不依赖驱动、不注入 DLL、不修改游戏文件
+- 无需安装、无需管理员权限（仅当需要拦截以管理员权限运行的游戏时才建议以管理员运行）
+- 不依赖驱动、不注入 DLL、不修改游戏文件、不修改系统核心文件
 
-> - Windows 10 / Windows 11 (x64)
-> - No install, no admin required (only needed when guarding games running elevated)
-> - No drivers, no DLL injection, no game file modification
-
-## 如何运行（便携版）/ How to run (portable)
+## 使用说明（便携版）
 
 1. 下载 `WinKeyGuard-Portable.zip` 并解压。
 2. 双击运行 `WinKeyGuard.exe`，程序常驻系统托盘。
-3. 打开「目标程序」页，添加游戏 EXE（手动输入 / 从运行进程选择 / 浏览 EXE）。
-4. 进入游戏全屏后自动保护；退出自动恢复。
-5. 保护状态下按 `Win` + \` 进入原生开始菜单。
+3. 右键托盘图标 → 「打开设置」，进入「目标程序」页。
+4. 添加游戏 EXE（可手动输入文件名、从当前运行的进程中选择、或浏览 EXE 文件）。
+5. 进入游戏全屏后自动保护；退出自动恢复。
+6. 保护状态下按 `Win` + ` 进入原生开始菜单。
+7. 在「设置」页可开启 Caps Lock 输入法联动、设置开机启动、语言等。
 
-配置保存在程序目录的 `config.json` 中，整个目录可复制到另一台电脑直接运行。
+配置保存在程序目录的 `config.json` 中，整个目录可直接复制到另一台电脑使用。
 
-> 1. Download and unzip `WinKeyGuard-Portable.zip`.
-> 2. Run `WinKeyGuard.exe`; it stays in the system tray.
-> 3. In the "Targets" page, add your game EXE (type / pick from running / browse).
-> 4. Protection kicks in automatically on foreground fullscreen and releases on exit.
-> 5. Press `Win` + \` while protected to open the native Start menu.
-
-## 构建 / Build
+## 构建
 
 依赖：CMake ≥ 3.21、Ninja、MSVC 2022、Qt 6（Widgets）。
-
-> Requires CMake ≥ 3.21, Ninja, MSVC 2022, Qt 6 (Widgets).
 
 ```powershell
 cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release `
@@ -105,40 +127,30 @@ cmake --build build --config Release
 
 便携打包（收集 Qt 运行库与 MSVC CRT）：
 
-> Portable packaging (collect Qt runtime and MSVC CRT):
-
 ```powershell
 windeployqt --release --no-translations --compiler-runtime build\WinKeyGuard.exe
 ```
 
-## 项目结构 / Project structure
+## 项目结构
 
 ```
 WinKeyGuard/
-├── src/             # 源码 / source
-├── include/         # 头文件 / headers
-├── resources/       # 图标、清单、版本资源 / icon, manifest, version info
-├── translations/    # 翻译源 / translation source
-├── tests/           # 控制台自测 / console self-test
+├── src/             # 源码
+├── include/         # 头文件
+├── resources/       # 图标、清单、版本资源
+├── translations/    # 翻译源
+├── tests/           # 控制台自测
 ├── CMakeLists.txt
 ├── LICENSE
 └── README.md
 ```
 
-## 已知限制 / Known limitations
+## 已知限制
 
-- `Ctrl+Alt+Delete`（Windows 安全注意序列）普通用户态程序无法可靠屏蔽，仅提示。
-- 以管理员权限运行的游戏中，普通权限的键盘 Hook 可能无法覆盖，需「以管理员身份运行」。
-- 「Win 本身」为主开关：启用时吞掉 Win 键按下，天然阻断所有 Win+组合；
-  单个 Win+组合的「允许」通过 `SendInput` 重放实现（仅纯 Win+单键规则）。
+- `Ctrl+Alt+Delete` 是 Windows 安全注意序列，普通用户态程序无法可靠屏蔽，仅作提示，不做危险绕过。
+- 需要拦截以管理员权限运行的游戏时，请将 WinKeyGuard 以管理员身份运行。
+- 「Win 本身」是主开关：启用时会吞掉 Win 键按下，从而天然阻断所有 Win+组合；单个 Win+组合的「允许」通过 `SendInput` 重放实现（仅纯 Win+单键规则）。
 
-> - `Ctrl+Alt+Delete` is a Windows secure sequence and cannot be reliably blocked
->   by a user-mode program; it is only reported.
-> - Guarding games running elevated requires running WinKeyGuard as administrator.
-> - The "Win key" rule is a master switch: when enabled, the Win keydown is
->   swallowed, blocking all Win+combos; individual "allowed" Win combos are
->   replayed via `SendInput` (pure Win + single key only).
-
-## 许可 / License
+## 许可
 
 [MIT](LICENSE)
