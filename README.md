@@ -1,5 +1,8 @@
 # WinKeyGuard
 
+> 本软件由 AI 制作，仅供个人自用。
+> This software is AI-generated and intended for personal use only.
+
 轻量、绿色、无需安装的 Windows 游戏快捷键防误触工具。
 
 > Lightweight, portable, no-install Windows hotkey guard for games.
