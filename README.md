@@ -58,7 +58,7 @@ Windows 系统快捷键组合；同时提供 Caps Lock 与输入法联动管理�
 - **全屏检测 / Fullscreen detection**：结合前台窗口、窗口矩形、显示器矩形、窗口样式、
   DWM 信息与 Per-Monitor V2 DPI 感知，支持独占全屏、无边框全屏、多显示器；
   另有「前台窗口模式」兼容特殊游戏。
-- **Win + ` 特殊入口 / Win + ` escape hatch**：保护状态下按 `Win + ` ` ` 打开
+- **Win + \` 特殊入口 / Win + \` escape hatch**：保护状态下按 `Win` + \` 打开
   **Windows 原生开始菜单**（按物理扫描码识别，不依赖键盘布局字符），返回游戏自动重新保护。
 - **Caps Lock / 输入法联动 / Caps Lock ↔ IME linkage**：Caps ON → 自动切换到英文输入法
   并禁止输入法切换快捷键；Caps OFF → 按用户选择处理并恢复正常切换。
@@ -81,7 +81,7 @@ Windows 系统快捷键组合；同时提供 Caps Lock 与输入法联动管理�
 2. 双击运行 `WinKeyGuard.exe`，程序常驻系统托盘。
 3. 打开「目标程序」页，添加游戏 EXE（手动输入 / 从运行进程选择 / 浏览 EXE）。
 4. 进入游戏全屏后自动保护；退出自动恢复。
-5. 保护状态下按 `Win + ` ` ` 进入原生开始菜单。
+5. 保护状态下按 `Win` + \` 进入原生开始菜单。
 
 配置保存在程序目录的 `config.json` 中，整个目录可复制到另一台电脑直接运行。
 
@@ -89,7 +89,7 @@ Windows 系统快捷键组合；同时提供 Caps Lock 与输入法联动管理�
 > 2. Run `WinKeyGuard.exe`; it stays in the system tray.
 > 3. In the "Targets" page, add your game EXE (type / pick from running / browse).
 > 4. Protection kicks in automatically on foreground fullscreen and releases on exit.
-> 5. Press `Win + ` ` ` while protected to open the native Start menu.
+> 5. Press `Win` + \` while protected to open the native Start menu.
 
 ## 构建 / Build
 
